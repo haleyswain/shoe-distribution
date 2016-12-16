@@ -1,5 +1,5 @@
 source('https://rubygems.org')
-
+gem('shoulda')
 gem('sinatra')
 gem('sinatra-contrib')
 gem('rspec')

@@ -3,7 +3,8 @@ require("sinatra/reloader")
 require('sinatra/activerecord')
 also_reload("lib/**/*.rb")
 require("pg")
-# require('./lib/project')
+require('./lib/brand')
+require('./lib/store')
 
 get('/') do
   erb(:index)
