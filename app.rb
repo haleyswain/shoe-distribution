@@ -28,3 +28,18 @@ get('/stores/:id') do
   @brands = @store.brands()
   erb(:store)
 end
+
+patch('/stores/:id/edit') do
+  name = params.fetch('edit-store')
+  @store = Store.find(params.fetch('id').to_i())
+  @store.update(:name => name)
+  @brands = @store.brands()
+  erb(:store)
+end
+
+delete('/store/:id/delete') do
+  @store = Store.find(params.fetch('id').to_i())
+  @store.delete()
+  @stores = Store.all()
+  erb(:stores)
+end

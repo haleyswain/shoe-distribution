@@ -28,3 +28,9 @@
   <input id='edit-store' name='edit-store' type='text' class='form_control'></input>
   <button type='submit'>Edit Store</button>
 </form>
+
+<p>Delete this Shoe Store</p>
+<form action='/store/<%= @store.id() %>/delete' method='post'>
+  <input name='_method' type='hidden' value='delete'>
+  <button class='btn btn-default'> Delete this Store</button>
+</form>
