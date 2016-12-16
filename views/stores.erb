@@ -1,6 +1,17 @@
-<h2> Shoe Stores</h2>
+<h5> Shoe Stores</h5>
 
-<h2><% if @stores.any?() %>
+<p>Add a store to the database:</p>
+
+<form action="/stores" method="post">
+  <label for="name">Store name:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Add store</button>
+</form>
+
+<h5><% if @stores.any?() %></h5>
+  <p>Click on a store to see which shoe brands they sell</p>
+
   <ul>
     <% @stores.each() do |store| %>
     <li><a href="/stores/<%= store.id()%>"><%= store.name() %></a></li>
@@ -8,12 +19,8 @@
   </ul>
 
   <% else %>
-  <h3> There are currently no stores! Add a new store below </h3>
+  <h5> There are currently no stores! </h5>
   <% end %>
-  <form action = '/stores' method='post'>
-    <label for='new-store'>Enter a new Store:</label>
-    <input id='new-store' name='new-store' type='text'>
-    <button type='submit'>Add a new store</button>
-  </form>
-
+  <a href = '/brands'> see all Shoe Brands</a>
+  <br>
   <a href = '/'>click here to return to the home page</a>
