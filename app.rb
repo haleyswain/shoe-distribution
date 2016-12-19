@@ -36,16 +36,23 @@ end
 post('/stores') do
   @stores = Store.all()
   name = params.fetch('name')
-  Store.create({name: name})
-  erb(:stores)
+  store = Store.create({name: name})
+  if store.save
+    erb(:stores)
+  else
+    erb(:errors)
+  end
 end
 
 post('/brands') do
-  name = params.fetch('new-brand')
-  brand = Brand.new(:name => name, :id => nil)
-  brand.save()
   @brands = Brand.all()
-  erb(:brands)
+  name = params.fetch('new_brand')
+  @brand = Brand.new(:name => name, :id => nil)
+  if @brand.save
+    redirect ('/')
+  else
+    erb(:errors)
+  end
 end
 
 get('/stores/:id') do
@@ -80,13 +87,16 @@ delete('/stores/:id') do
   redirect '/'
 end
 
-post('/store/:id') do
+post('/stores/:id') do
   name = params.fetch('name')
   @brands = Brand.all()
   @store = Store.find(params.fetch(store_id.to_i()))
   new_brand = Brand.where({name: name})
-  # @store.brands.push(new_brand)
-  redirect '/'
+  if new_brand.save
+    redirect '/'
+  else
+    erb(:errors)
+  end
 end
 
 post('/brands/:id') do
@@ -112,6 +122,10 @@ end
 post('/stores/:id/brands') do
   store = Store.find(params.fetch("id").to_i)
   brand = Brand.create({:name => params.fetch("name")})
-  store.brands.push(brand)
-  redirect '/'
+  if brand.save
+     store.brands.push(brand)
+     redirect ('/')
+  else
+    erb(:errors)
+  end
 end

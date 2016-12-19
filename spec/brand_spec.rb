@@ -10,3 +10,10 @@ describe(Brand) do
     expect(brand.save()).to(eq(false))
     end
   end
+
+  describe('#capitalize_name') do
+    it('capitalizes the name of the brand') do
+      brand = Brand.create({:name => 'murphys shoes'})
+      expect(brand.name).to (eq('Murphys Shoes'))
+    end
+  end
