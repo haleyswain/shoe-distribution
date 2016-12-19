@@ -1,6 +1,6 @@
 # _Shoe Distribution_
 
-#### By _**Haley Swain**, 12/16/1993_
+#### By _**Haley Swain**, 12/16/2016_
 
 ## Description
 * This is a program that will allow the user to track shoe brands and what stores they are in.
