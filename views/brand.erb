@@ -1,36 +1,20 @@
 <h3><%= @brand.name() %></h3>
-
-<!-- <h4> List of stores where <%= @brand.name() %> shoes are sold </h4>
-
-<% if @stores.any?() %>
-  <ul>
-    <% @stores.each do |store| %>
-    <li><a href = '/stores/<%= store.id() %>'><%= store.name() %></a></li>
-    <% end %>
-  </ul>
-    <% else %>
-    <p>Sadly, this brand of shoes isn't sold in any stores yet. Add a store below! </p>
-    <% end %> -->
-
-    <h3>Select all stores selling these kinds of shoes:</h3>
+<h3>Select another store selling these kinds of shoes:</h3>
 
     <% if @stores.any?() %>
-    <form action='/brands/<%= brand.id() %>' method ='post'>
-      <input type = 'hidden' name='_method' value='patch'>
-    <% @stores.each() do |store| %>
-      <div class='checkbox'>
-        <label>
-          <input type='checkbox' name='store_ids[]' value='<%= store.id() %>'><%= store.name() %>
-        </label>
-      </div>
+    <form action='/brands/<%= @brand.id() %>' method ='post'>
+      <% @stores.each() do |store| %>
+        <div class="store-checkbox">
+          <input type='checkbox' name='brand_ids[]' value='<%= store.id() %>' id="store-<%= store.id %>">
+          <label for="store-<%= store.id %>"><%= store.name  %></label>
+        </div>
+      <% end %>
+      <button type='submit'> Add Stores </button>
+    </form>
     <% end %>
 
-    <button type='submit'> Add Stores </button>
-  </form>
-  <% end %>
-
   <% if @brand.stores().any?() %>
-  <h3>Here are all the stores carrying this kind of shoe:</h3>
+  <h3>Here are all the stores currently carrying this kind of shoe:</h3>
 
   <ul>
     <% @brand.stores().each() do |store| %>
@@ -41,7 +25,9 @@
   <p>There are no shoe stores yet!</p>
 <% end %>
 
-<a href ='/stores'>Click here to add a new store </a>
 
+
+<a href ='/stores'>Click here to add a new store </a>
+<br>
 
 <a href="/">Return to Main Page</a>
